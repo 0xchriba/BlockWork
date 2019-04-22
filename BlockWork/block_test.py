@@ -74,51 +74,67 @@ print(bob.send_ether(alice.public_key, 4))
 
 
 
-class Project:
-    __init__(self, project_description, milestone_descriptions, milestones_met):
-        assert verification_method == "Arbitrator Review" or verification_method == "Test Cases" or verification_method == "Self Review"
-        self.contractor = ""
-        self.freelancer = ""
-        self.skills_needed = ""
-        self.project_description = project_description
-        self.milestone_descriptions = milestone_descriptions
-        self.milestones_met = milestones_met
-
-    def find_freelancer():
-        #for all users
-            #find user with max related score defned as: 1/n * factors
-            #factors = rating/10 + skills_met/len(skills_needed)
-
-    def project_status():
-        count = 0
-        incomplete = []
-        for name, status in milestones_met:
-            if status:
-                count += 1
-            else:
-                incomplete.append(name)
-        return {
-            "status" : count / len(milestones_met,
-            "incomplete" : incomplete
-            }
-
-    def raise_dispute():
-        return None
-
-    def find_arbitrators():
-        #mixture of people familiar with skills and both contractors and freelancers
-        return None
-
-    def resolve_dispute():
-
-
-
-
-
-def complete_project():
-
-
-    #if there were arbitrators send them 2%
-    #update ratings
-    #send 1% of
-    return "Code to the contractor"
+# class Project:
+#     __init__(self, project_description, milestone_descriptions, milestones_met, cost):
+#         assert verification_method == "Arbitrator Review" or verification_method == "Test Cases" or verification_method == "Self Review"
+#         self.contractor = ""
+#         self.freelancer = ""
+#         self.skills_needed = ""
+#         self.project_description = project_description
+#         self.milestone_descriptions = milestone_descriptions
+#         self.milestones_met = milestones_met
+#         self.arbitrators = []
+#         self.cost = cost
+#
+#     def find_freelancer():
+#         #for all users
+#             #find user with max related score defned as: 1/n * factors
+#             #factors = rating/10 + skills_met/len(skills_needed)
+#
+#     def project_status():
+#         count = 0
+#         incomplete = []
+#         for name, status in milestones_met:
+#             if status:
+#                 count += 1
+#             else:
+#                 incomplete.append(name)
+#         return {
+#             "status" : count / len(milestones_met,
+#             "incomplete" : incomplete
+#             }
+#
+#     def raise_dispute():
+#         return None
+#
+#     def find_arbitrators():
+#         #mixture of people familiar with skills and both contractors and freelancers
+#         return None
+#
+#     def resolve_dispute():
+#         return None
+#
+#     def complete_project():
+#         #if there were arbitrators send them 2%
+#         #update ratings
+#         #send 1% of
+#         return "Code to the contractor"
+#
+#     def dispurse_funds():
+#         #send money to freelancer
+#         freelancer_amount = 0.98 * self.total
+#         send_ether(self, self.freelancer, freelancer_amount)
+#         self.total -= freelancer_amount
+#
+#         #send money to arbitrators
+#         arbitrator_amount = (0.02 * self.total) - len(self.arbitrators)
+#         for arbitrator in self.arbitratiors:
+#             send_ether(self, arbitrator, arbitrator_amount)
+#             self.total -= arbitrator_amount
+#
+#         #send money to US
+#         send_ether(self, '''BlockWork PubK''', self.total)
+#         self.total = 0
+#
+#         return '''status code'''
+#
