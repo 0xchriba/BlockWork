@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}About{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="about" %}
+{% endblock %}
+
+<!-- Benefits of the Django application -->
+{% block container %}
+
+<div id="sec1" class="text-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+
+        {%if not project_skills %}
+        <form method = 'post' action = 'result/'>
+          {%csrf_token%}
+          {{form.as_p}}
+          <button type = "submit">Submit</button>
+        </form>
+        {%endif%}
+
+        {%if project_skills %}
+
+        <h1>Great! Bob is an unoccupied freelancer who is skilled in {{project_skills}} </h1>
+
+        <h1>We will contact him and see if he is up for the project! </h1>
+
+        <p><a class="btn btn-primary" href= "../../find-freelancer/" role="button">Next</a></p>
+        {%endif%}
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock container %}

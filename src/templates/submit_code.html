@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}About{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="about" %}
+{% endblock %}
+
+<!-- Benefits of the Django application -->
+{% block container %}
+
+<div id="sec1" class="text-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+
+        {%if percent%}
+        <h1>{{percent}}</h1>
+        {%endif%}
+
+        <form method = 'post' action = '' enctype="multipart/form-data">
+          {%csrf_token%}
+          <span class = 's-input'>{{get_index.as_table}}</span>
+          <p>{{form}}</p>
+          <input type="submit" value="Submit" />
+          <!-- <button type = "submit" value="SubmitCode">Submit</button> -->
+        </form>
+
+        {% for f in file %}
+          {{forloop.counter}}.<a href="{{ f.file.url }}">{{ f.file.name }}</a>
+        {% endfor %}
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock container %}

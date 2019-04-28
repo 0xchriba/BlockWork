@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}About{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="about" %}
+{% endblock %}
+
+<!-- Benefits of the Django application -->
+{% block container %}
+
+<div id="sec1" class="text-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+
+        {%if not F%}
+        <h1> Congratulations! You have finished all project milestones. </h1>
+
+        <h3>Click the button below to get paid! </h3>
+
+        <form method = 'post' action = ''>
+          {%csrf_token%}
+
+          <button class="btn btn-primary" type = "submit">Submit</button>
+        </form>
+        {%else%}
+        <h1>You made ${{F}}! </h1>
+        <h3>Arbitrators made ${{A}}. </h1>
+        <h3> BlockWork took a 5% cut which comes out to ${{B}}. </h3>
+        {%endif%}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock container %}

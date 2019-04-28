@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}About{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="about" %}
+{% endblock %}
+
+<!-- Benefits of the Django application -->
+{% block container %}
+
+<div id="sec1" class="text-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+
+        {%if not status %}
+        <h1> didnt work </h1>
+        {%endif%}
+
+        {%if status %}
+
+        <p><a class="btn btn-primary" href= "../project-history" role="button">View History</a></p>
+
+        <h1>Current Status: {{status.0}} </h1>
+        <span class="code" style="text-align:left; float:left" >{% autoescape off %}{{ code }}{% endautoescape %} </span>
+
+        {%endif%}
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock container %}

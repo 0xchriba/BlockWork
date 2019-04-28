@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}About{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="about" %}
+{% endblock %}
+
+<!-- Benefits of the Django application -->
+{% block container %}
+
+<div id="sec1" class="text-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+
+        {%if not history %}
+        <h1> didnt work </h1>
+        {%endif%}
+
+        {%if history %}
+        <p><a class="btn btn-primary" href= "../project-status" role="button">View Status</a></p>
+
+        {%for state in history%}
+        <div>
+          <h1>Block Number: {{state.blockNumber}} </h1>
+          <h3>Status: {{state.args.Status}} </h3>
+          <br>
+        </div>
+
+        {%endfor%}
+
+        {%endif%}
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock container %}

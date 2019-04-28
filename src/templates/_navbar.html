@@ -1,0 +1,5 @@
+<li {% if active_link == "home" %}class="active"{% endif %}><a href="{% url 'home' %}">Home</a></li>
+<li {% if active_link == "about" %}class="active"{% endif %}><a href="{% url 'about' %}">About</a></li>
+<li {% if active_link == "new-project" %}class="active"{% endif %}><a href="{% url 'new-project' %}">New Project</a></li>
+<li {% if active_link == "project-status" %}class="active"{% endif %}><a href="{% url 'project-status' %}">Project Status</a></li>
+<li {% if active_link == "submit-code" %}class="active"{% endif %}><a href="{% url 'submit-code' %}">Submit Code</a></li>
