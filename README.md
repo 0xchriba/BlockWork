@@ -4,13 +4,23 @@
 
 blockwork is a _short description_. It is built with [Python][0] using the [Django Web Framework][1].
 
-This project has the following basic apps:
+#Initial Setup
 
-* App1 (short desc)
-* App2 (short desc)
-* App3 (short desc)
+Setup a Ganache server.
 
-## Installation
+Add domain and port to src/blockwork/setup.py
+
+brew install ipfs
+
+ipfs daemon
+
+Add domain and port to src/blockwork/setup.py
+
+Deploy solidity/framework.sol to Ganache using Remix Online Text Editor.
+
+Add contract address and abi to src/blockwork/setup.py.
+
+
 
 ### Quick start
 
@@ -28,9 +38,8 @@ Run migrations:
 
     python manage.py migrate
 
-### Detailed instructions
+Initialize environment:
+  ./start_env.sh
 
-Take a look at the docs for more information.
-
-[0]: https://www.python.org/
-[1]: https://www.djangoproject.com/
+Run server:
+  python manage.py runserver
