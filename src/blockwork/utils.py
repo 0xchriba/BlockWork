@@ -2,11 +2,13 @@ import json
 from web3 import Web3
 import ipfsapi
 import time
+from . import setup as s
 
 ipfs_domain = "http://localhost:8080/ipfs/"
 
 
-ipfs = ipfsapi.connect('127.0.0.1', 5001)
+ipfs = ipfsapi.connect(s.ipfs_domain, s.ipfs_port)
+
 
 
 def ipfs_upload(file):
@@ -23,18 +25,14 @@ def ipfs_download(hash):
 
 
 def get_contract():
-    ganache_url = "http://127.0.0.1:7545"
+    ganache_url = "http://" + s.ganache_domain + ":" + str(s.ganache_port)
     web3 = Web3(Web3.HTTPProvider(ganache_url))
     web3.eth.defaultAccount = web3.eth.accounts[0]
 
     ''' Test 1'''
-    # address = web3.toChecksumAddress('0xfdae4ea9f40fa5c4bebb822714da176950d6a976')
-    # raw_abi = '[{"constant":false,"inputs":[{"name":"_c","type":"string"},{"name":"_f","type":"string"},{"name":"_p_title","type":"string"},{"name":"_p_desc","type":"string"},{"name":"_p_amt","type":"int256"},{"name":"_s","type":"string"}],"name":"Generate","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"Project_Status","outputs":[{"name":"c","type":"string"},{"name":"f","type":"string"},{"name":"p_title","type":"string"},{"name":"p_desc","type":"string"},{"name":"s","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"Contractor","type":"string"},{"indexed":false,"name":"Freelancer","type":"string"},{"indexed":false,"name":"Project_Desc","type":"string"},{"indexed":false,"name":"Project_Title","type":"string"},{"indexed":false,"name":"Project_Amount","type":"int256"},{"indexed":false,"name":"Status","type":"string"},{"indexed":false,"name":"Project_Code","type":"string"}],"name":"State","type":"event"}]'
-    # abi = json.loads(raw_abi)
 
-    address = web3.toChecksumAddress('0x49f7342c9e62a359d643abce2cbf49d0c7fbc31c')
-    raw_abi = '[{"constant":true,"inputs":[],"name":"Project_Info","outputs":[{"name":"c","type":"string"},{"name":"f","type":"string"},{"name":"p_title","type":"string"},{"name":"p_desc","type":"string"},{"name":"p_amt","type":"int256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_s","type":"string"}],"name":"Finish_Project","outputs":[{"name":"p_amt","type":"int256"},{"name":"p_code","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_c","type":"string"},{"name":"_p_title","type":"string"},{"name":"_p_desc","type":"string"},{"name":"_p_amt","type":"int256"},{"name":"_s","type":"string"},{"name":"_m_comp","type":"bool[]"},{"name":"_m_desc","type":"bytes32[]"}],"name":"Generate","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"Project_Status","outputs":[{"name":"s","type":"string"},{"name":"p_code","type":"string"},{"name":"m_comp","type":"bool[]"},{"name":"m_desc","type":"bytes32[]"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_f","type":"string"},{"name":"_s","type":"string"}],"name":"Accept","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_i","type":"int256"},{"name":"_p_code","type":"string"},{"name":"_s","type":"string"}],"name":"Complete_Milestone","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"name":"Status","type":"string"},{"indexed":false,"name":"Project_Code","type":"string"},{"indexed":false,"name":"Milestones_Completed","type":"bool[]"},{"indexed":false,"name":"Milestone_Descriptions","type":"bytes32[]"}],"name":"State","type":"event"}]'
-    abi = json.loads(raw_abi)
+    address = web3.toChecksumAddress(s.contract_address)
+    abi = json.loads(s.contract_abi)
 
     contract = web3.eth.contract(address=address, abi=abi)
     return contract
