@@ -4,7 +4,7 @@
 
 blockwork is a _short description_. It is built with [Python][0] using the [Django Web Framework][1].
 
-#Initial Setup
+###Initial Setup
 
 Setup a Ganache server.
 
