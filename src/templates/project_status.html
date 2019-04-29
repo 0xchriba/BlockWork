@@ -12,9 +12,14 @@
 <!-- Benefits of the Django application -->
 {% block container %}
 
-<div id="sec1" class="text-page">
+<div id="sec2" class="text-page">
   <div class="container">
-    <div class="row">
+    <div class="row-md-3">
+  
+
+
+
+
       <div class="col-md-12 text-center">
 
         {%if not status %}
@@ -23,11 +28,10 @@
 
         {%if status %}
 
-        <p><a class="btn btn-primary" href= "../project-history" role="button">View History</a></p>
+        <p><a class="btn btn-primary" href= "../my-project" role="button">Back</a></p>
 
         <h1>Current Status: {{status.0}} </h1>
-        <span class="code" style="text-align:left; float:left" >{% autoescape off %}{{ code }}{% endautoescape %} </span>
-
+        <h1>  <a href="http://localhost:8080/ipfs/{{status.1}}">View Code</a></h1>
         {%endif%}
 
 

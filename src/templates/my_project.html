@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}About{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="about" %}
+{% endblock %}
+
+<!-- Benefits of the Django application -->
+{% block container %}
+
+<div id="sec2" class="text-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+
+
+        <div class="col-lg-3">
+          <p><a class="btn btn-primary" href= "../project-status" role="button">View Status</a></p>
+        </div>
+
+        <div class="col-lg-3">
+          <p><a class="btn btn-primary" href= "../project-history" role="button">View History</a></p>
+        </div>
+
+        <div class="col-lg-3">
+          <p><a class="btn btn-primary" href= "../submit-code" role="button">Submit Code</a></p>
+        </div>
+
+        <div class="col-lg-3">
+          <p><a class="btn btn-primary" href= "" role="button">Raise Dispute</a></p>
+        </div>
+      </div>
+      <div class="col-md-12 text-center">
+        <h1> {{info.3}} Project Information </h1>
+        <h2> Contractor: {{info.0}} </h2>
+        <h2> Freelancer: {{info.1}} </h2>
+        <h2> Description: {{info.2}} </h2>
+        <h2> Cost: ${{info.4}} </h2>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock container %}

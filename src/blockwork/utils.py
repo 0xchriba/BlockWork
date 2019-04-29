@@ -92,10 +92,10 @@ def finish_project():
     #calculate payments NO ARBITRATORS YET
     total = info[-1]
     balance = total
-    freelancer_amount = round(0.90 * total,2)
+    freelancer_amount = round(0.93 * total,2)
     balance -= freelancer_amount
     arbitrator_count = 3
-    arbitrator_amount = round(0.05 * total / arbitrator_count, 2)
+    arbitrator_amount = round(0.02 * total / arbitrator_count, 2)
     balance -= arbitrator_amount
 
     # #send money to arbitrators
@@ -116,6 +116,8 @@ skills = ['C++', 'C', 'R', 'Java', 'Tensorflow', 'Solidity', 'JavaScript', 'UI',
         'Go', 'Python', 'React', 'Node.js', 'React', 'Flutter', 'Android', 'IOS', 'Unix',
          'Ruby', 'AWS', 'GCP', 'Assembly', 'PHP', 'Swift', 'C#', 'Objectiv-C', 'Scala', 'Firebase',
          'Kotlin', 'Lisp', 'SQL', 'Spark', 'Django', 'Angular', 'jQuery', 'MongoDB', 'Docker', 'Kubernetes']
+
+verif = ['None', 'Self Verification', 'Arbitrators', 'Test Cases']
 
 def get_history():
     return contract.events.State.createFilter(fromBlock=0).get_all_entries()

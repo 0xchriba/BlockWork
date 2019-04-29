@@ -12,7 +12,7 @@
 <!-- Benefits of the Django application -->
 {% block container %}
 
-<div id="sec1" class="text-page">
+<div id="sec2" class="text-page">
   <div class="container">
     <div class="row">
       <div class="col-md-12 text-center">
@@ -23,10 +23,9 @@
 
         <form method = 'post' action = '' enctype="multipart/form-data">
           {%csrf_token%}
-          <span class = 's-input'>{{get_index.as_table}}</span>
-          <p>{{form}}</p>
-          <input type="submit" value="Submit" />
-          <!-- <button type = "submit" value="SubmitCode">Submit</button> -->
+          <span class = 's-input'>Milestone Number: {{get_index.Get_Index}}</span>
+          <p>{{form.as_table}}</p>
+          <input class="btn btn-primary" type="submit" value="Submit" />
         </form>
 
         {% for f in file %}

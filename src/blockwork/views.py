@@ -17,22 +17,6 @@ class AboutPage(generic.TemplateView):
     template_name = "about.html"
 
 
-class FindFreelancerPage(generic.TemplateView):
-    template_name = "find_freelancer.html"
-
-    def get(self, request):
-        form = myforms.FindFreelancerForm()
-        return render(request, self.template_name, {'form': form})
-
-    def post(self, request):
-        form = myforms.FindFreelancerForm(request.POST)
-        if form.is_valid():
-            project_skills = form.cleaned_data['Project_Skills']
-            project_skills_html = ""
-            for skill in project_skills[:-1]:
-                project_skills_html += skill + ", "
-            project_skills_html += "and " + project_skills[-1] + "."
-        return render(request, self.template_name, {'form': form, 'project_skills': project_skills_html})
 
 class NewProjectPage(generic.TemplateView):
     template_name = "new_project.html"
@@ -60,7 +44,7 @@ class NewProjectPage(generic.TemplateView):
 
         project_title_html = 'Project Title: ' + project_title
         project_desc_html = 'Project Description: ' + project_desc
-        project_amount_html = 'Project Amount: ' + project_amount
+        project_amount_html = 'Project Cost: $' + project_amount
         args = {
             'form': myforms.NewProjectForm(),
             'project_title' : project_title_html,
@@ -68,6 +52,48 @@ class NewProjectPage(generic.TemplateView):
             'project_amount' : project_amount_html,
             }
         return render(request, self.template_name, args)
+
+
+class FindFreelancerPage(generic.TemplateView):
+    template_name = "find_freelancer.html"
+
+    def get(self, request):
+        form = myforms.FindFreelancerForm()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        form = myforms.FindFreelancerForm(request.POST)
+        if form.is_valid():
+            project_skills = form.cleaned_data['Project_Skills']
+            project_skills_html = ""
+            for skill in project_skills[:-1]:
+                project_skills_html += skill + ", "
+            project_skills_html += "and " + project_skills[-1] + "."
+        return render(request, self.template_name, {'form': form, 'project_skills': project_skills_html})
+
+
+def MyProjectPage(request):
+    template_name = "my_project.html"
+    info = utils.get_info()
+    return render(request, template_name, {'info': info})
+
+def ProjectStatusPage(request):
+    template_name = "project_status.html"
+    status = utils.get_status()
+    code = utils.ipfs_download(status[1])
+    print(code)
+    return render(request, template_name, {'status': status, 'code': code})
+
+def ProjectHistoryPage(request):
+    template_name = "project_history.html"
+    history = utils.get_history()
+    print(history[0])
+    return render(request, template_name, {'history': history})
+
+class FreePortalPage(generic.TemplateView):
+    template_name = "free_portal.html"
+    utils.accept_contract("bob")
+
 
 
 def SubmitCodePage(request):
@@ -115,18 +141,3 @@ class FinishProjectPage(generic.TemplateView):
         funds = utils.finish_project()
         print(funds)
         return render(request, self.template_name, {'F': funds['F Pay'], 'B': funds['B Pay'], 'A': funds['A Pay']})
-
-
-
-def ProjectStatusPage(request):
-    template_name = "project_status.html"
-    status = utils.get_status()
-    code = utils.ipfs_download(status[1])
-    print(code)
-    return render(request, template_name, {'status': status, 'code': code})
-
-def ProjectHistoryPage(request):
-    template_name = "project_history.html"
-    history = utils.get_history()
-    print(history[0])
-    return render(request, template_name, {'history': history})

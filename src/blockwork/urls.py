@@ -27,6 +27,8 @@ urlpatterns = [
     path("submit-code/", views.SubmitCodePage, name="submit-code"),
     path("code-result/", views.CodeResultPage, name="code-result"),
     path("finish-project/", views.FinishProjectPage.as_view(), name="finish-project"),
+    path("my-project/", views.MyProjectPage, name="my-project"),
+    path("free-portal/", views.FreePortalPage.as_view(), name="free-portal"),
     path("", include(accounts.urls)),
 ]
 

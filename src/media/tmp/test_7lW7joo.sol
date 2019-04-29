@@ -31,7 +31,7 @@ contract Test1 {
         Project_Desc = "";
         Project_Title = "";
         Project_Amount = -1;
-        Status = "Initialized";
+        Status = "initialized";
         Project_Code = "";
         emit State(Contractor, Freelancer, Project_Desc, Project_Title, Project_Amount, Status, Project_Code);
     }
